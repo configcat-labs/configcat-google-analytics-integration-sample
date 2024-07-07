@@ -7,6 +7,8 @@
         questions: Object
     })
 
+    const emit = defineEmits(['generateQuestions']);
+
     let gameOverModal;
 
     onMounted(() => {
@@ -16,18 +18,17 @@
     let score = 0;
     
     let questionCounter = ref(0);
-    // currentQuestion is ONLY used within this component, and not passed down to the child, Question
-    let currentQuestion = props.questions[questionCounter.value];
+    let currentQuestion = ref(props.questions[questionCounter.value]);
     let optionsDisabled = ref(false);
 
     function playSound() {
-        var questionAudio = new Audio(`sounds/${currentQuestion.audio}.mp3`);
+        var questionAudio = new Audio(`sounds/${currentQuestion.value.audio}.mp3`);
         questionAudio.play();
     }
 
     function checkAnswer(option) {
         optionsDisabled.value = true;
-        if(option === currentQuestion.answer) {
+        if(option === currentQuestion.value.answer) {
             score++;
         }
     }
@@ -36,11 +37,19 @@
         questionCounter.value++;
         if(questionCounter.value < props.questions.length) {
             optionsDisabled.value = false;
-            currentQuestion = props.questions[questionCounter.value];
+            currentQuestion.value = props.questions[questionCounter.value];
         } else {
             // open game over modal
             gameOverModal.show();
         }
+    }
+
+    function restart() {
+        emit('generateQuestions');
+        questionCounter.value = 0;
+        currentQuestion.value = props.questions[questionCounter.value];
+        score = 0;
+        optionsDisabled.value = false;
     }
 
 </script>
@@ -52,15 +61,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="gameOverModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <!-- <h1 class="modal-title fs-5" id="gameOverModalLabel">Game Over!</h1> -->
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body">
-                        <p>You scored Change ME</p>
+                        <p>You scored {{score}}</p>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="restart">Restart</button>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -70,10 +78,11 @@
                 Play Sound
             </div>
         </div>
-        <Question :question="questions[questionCounter]" :options-disabled="optionsDisabled" @option-selected="checkAnswer"/>
+        <Question :question="currentQuestion" :options-disabled="optionsDisabled" @option-selected="checkAnswer"/>
         <button
          class="btn bg-primary-subtle" 
          @click="loadNextQuestion"
+         :disabled="!optionsDisabled"
         >
          Next
         </button>

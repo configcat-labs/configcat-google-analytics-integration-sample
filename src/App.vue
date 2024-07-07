@@ -3,8 +3,9 @@ import { ref } from 'vue';
 import { useQuestionsStore } from './stores/questions';
 import QuizContainer from './components/QuizContainer.vue';
 
-const { questionBank } = useQuestionsStore();
+const questionStore = useQuestionsStore();
 var gameStarted = ref(false);
+
 </script>
 
 <template>
@@ -14,7 +15,7 @@ var gameStarted = ref(false);
       <button class="btn lemon-green" @click="gameStarted = true">Start</button>
     </div>
     <div v-else>
-      <QuizContainer :questions="questionBank"/>      
+      <QuizContainer :questions="questionStore.questionBank" @generate-questions="questionStore.setQuestions"/>      
     </div>
   </main>
 </template>

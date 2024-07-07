@@ -7,5 +7,10 @@ export const useQuestionsStore = defineStore('questions', {
     }),
     getters: {
         questionBank: state => state.questions
+    },
+    actions: {
+        setQuestions() {
+            this.questions = generateQuestions();
+        }
     }
 })
