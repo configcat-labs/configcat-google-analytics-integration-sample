@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ANIMAL_SOUNDS = fs.readdirSync(path.join('../assets/sounds'))
+const ANIMAL_SOUNDS = fs.readdirSync(path.join('../../public/sounds'))
     .map(file => path.basename(file, path.extname(file)));
 
 fs.writeFileSync('../assets/data/animal_sounds.json', JSON.stringify(ANIMAL_SOUNDS), err => {

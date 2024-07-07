@@ -21,7 +21,7 @@ export default function generateQuestions() {
   'rabbit', 'deer', 'bear', 'lion', 'tiger', 'elephant', 'giraffe', 'zebra', 'monkey', 'kangaroo',
   'dolphin', 'whale', 'shark', 'eagle', 'owl', 'parrot', 'snake', 'frog', 'turtle', 'fish'
 ];
-
+    
     const NUMBER_OF_QUESTIONS = 5;
     const NUMBER_OF_OPTIONS = 4;
 
