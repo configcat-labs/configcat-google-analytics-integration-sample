@@ -1,9 +1,16 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
     import Question from './Question.vue';
+    import { Modal } from 'bootstrap';
 
     const props = defineProps({
         questions: Object
+    })
+
+    let gameOverModal;
+
+    onMounted(() => {
+        gameOverModal = new Modal('#gameOverModal');
     })
 
     let score = 0;
@@ -31,7 +38,8 @@
             optionsDisabled.value = false;
             currentQuestion = props.questions[questionCounter.value];
         } else {
-            // load game over component. should put it in template when you're done
+            // open game over modal
+            gameOverModal.show();
         }
     }
 
@@ -39,13 +47,36 @@
 
 <template>
     <div class="question">
+        <!-- Game over Modal -->
+        <div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="gameOverModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You scored Change ME</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <div class="btn btn-info" @click="playSound">
                 Play Sound
             </div>
         </div>
         <Question :question="questions[questionCounter]" :options-disabled="optionsDisabled" @option-selected="checkAnswer"/>
-        <button class="btn bg-primary-subtle" @click="loadNextQuestion">Next</button>
+        <button
+         class="btn bg-primary-subtle" 
+         @click="loadNextQuestion"
+        >
+         Next
+        </button>
     </div>
     
 </template>
