@@ -2,6 +2,7 @@
     import { ref, onMounted } from 'vue';
     import Question from './Question.vue';
     import { Modal } from 'bootstrap';
+    import { useUserStore } from '@/stores/user'; 
 
     const props = defineProps({
         questions: Object
@@ -9,9 +10,13 @@
 
     const emit = defineEmits(['generateQuestions']);
 
+    const userStore = useUserStore();
+
     let gameOverModal;
 
     onMounted(() => {
+        userStore.setHighScore();
+        userStore.setTimesPlayed();
         gameOverModal = new Modal('#gameOverModal');
     })
 
@@ -39,6 +44,9 @@
             optionsDisabled.value = false;
             currentQuestion.value = props.questions[questionCounter.value];
         } else {
+            if(score > userStore.highScore) {
+                userStore.setHighScore(score);
+            } 
             // open game over modal
             gameOverModal.show();
         }
@@ -46,6 +54,8 @@
 
     function restart() {
         emit('generateQuestions');
+        userStore.incrementTimesPlayed();
+
         questionCounter.value = 0;
         currentQuestion.value = props.questions[questionCounter.value];
         score = 0;
