@@ -9,6 +9,7 @@ export default defineConfig({
     vue(),
   ],
   base: '/animal-sounds/',
+  envDir: '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
