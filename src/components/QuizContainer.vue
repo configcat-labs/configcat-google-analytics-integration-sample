@@ -16,7 +16,6 @@
 
     onMounted(() => {
         userStore.setHighScore();
-        userStore.setTimesPlayed();
         gameOverModal = new Modal('#gameOverModal');
     })
 
@@ -44,6 +43,7 @@
             optionsDisabled.value = false;
             currentQuestion.value = props.questions[questionCounter.value];
         } else {
+            userStore.incrementTimesPlayed();
             if(score > userStore.highScore) {
                 userStore.setHighScore(score);
             } 
@@ -54,7 +54,6 @@
 
     function restart() {
         emit('generateQuestions');
-        userStore.incrementTimesPlayed();
 
         questionCounter.value = 0;
         currentQuestion.value = props.questions[questionCounter.value];

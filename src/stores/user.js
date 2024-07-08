@@ -17,23 +17,30 @@ export const useUserStore = defineStore('user', {
             }
         },
         setHighScore(highScore) {
+            // first time playing
             if(!localStorage.getItem('highScore')) {
                 localStorage.setItem('highScore', this.highScore);
             } else {
-                localStorage.setItem('highScore', highScore);
+                // no highscore passed to the function
+                if(!highScore) {
+                    highScore = localStorage.getItem('highScore');
+                } else {
+                    // highscore passed to the function
+                    localStorage.setItem('highScore', highScore);
+                } 
                 this.highScore = highScore;
             }
         },
         setTimesPlayed() {
             // set timesPlayed to 0, the default value of timesPlayed in the store
-            if(!localStorage.getItem('timesPlayed')) {
-                localStorage.setItem('timesPlayed', this.timesPlayed);
-            } else {
-                this.timesPlayed = localStorage.getItem('timesPlayed');
-            }
+            localStorage.setItem('timesPlayed', this.timesPlayed + 1);
         },
         incrementTimesPlayed() {
-            localStorage.setItem('timesPlayed', parseInt(localStorage.getItem('timesPlayed')) + 1);
+            if(!localStorage.getItem('timesPlayed')) {
+                localStorage.setItem('timesPlayed', 1);
+            } else {
+                localStorage.setItem('timesPlayed', parseInt(localStorage.getItem('timesPlayed')) + 1);
+            }
             this.timesPlayed = localStorage.getItem('timesPlayed');
         }
     }
