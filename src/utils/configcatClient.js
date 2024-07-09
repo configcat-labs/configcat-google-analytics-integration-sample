@@ -8,12 +8,12 @@ export function initializeClient() {
         {
             setupHooks: (hooks) => {
                 hooks.on('flagEvaluated', evaluationDetails => {
-                    /* const variant = "configcat-" + evaluationDetails.key + "-" + evaluationDetails.value;
+
+                    const variant = "configcat-" + evaluationDetails.key + "-" + evaluationDetails.value;
                     gtag('event', 'experience_impression', {
                             'exp_variant_string': variant,
                             'variation_id': evaluationDetails.variationId
-                    }); */
-                    console.log(evaluationDetails);
+                    });
                 })
             },
             logger: logger
