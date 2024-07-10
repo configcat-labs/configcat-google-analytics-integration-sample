@@ -7,20 +7,20 @@
     let configcatClient;
     let isAnswerHighlightEnabled;
 
+    const props = defineProps({
+        question: Object,
+        optionsDisabled: Boolean
+    })
+    const emit = defineEmits(['optionSelected']);
+
     onBeforeMount(() => {
         configcatClient = initializeClient();  
         setHighlightStatus();
     })
 
-    const emit = defineEmits(['optionSelected']);
-    const props = defineProps({
-        question: Object,
-        optionsDisabled: Boolean
-    })
-
     async function setHighlightStatus() {
         isAnswerHighlightEnabled = await configcatClient.getValueAsync(
-            'show_answer',
+            'highlight_answer',
             false,
             new configcat.User(useUserStore().userID)
         );
