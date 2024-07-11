@@ -85,7 +85,7 @@
         </div>
         <div>
             <button id="sound__icon__button" class="btn btn-info" @click="playSound">
-                <img id="sound__icon" src="/public/loudspeaker.svg" width="50"/>
+                <img id="sound__icon" src="/loudspeaker.svg" width="50"/>
             </button>
             <!-- <span>Click to hear the sound</span> -->
         </div>
