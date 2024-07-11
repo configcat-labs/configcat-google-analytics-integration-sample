@@ -50,10 +50,10 @@
 </template>
 
 <style scoped>
-
     .options {
         margin: 0 auto;
         width: 70%;
+        justify-content: center;
     }
 
     .option {
@@ -64,8 +64,7 @@
 
     @media (min-width: 576px) {
         .option {
-            width: 40%;
-            max-width: 70%;
+            width: 100px;
             padding: 0.75rem;
         }
     }
