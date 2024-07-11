@@ -84,13 +84,15 @@
             </div>
         </div>
         <div>
-            <div class="btn btn-info" @click="playSound">
-                Play Sound
-            </div>
+            <button id="sound__icon__button" class="btn btn-info" @click="playSound">
+                <img id="sound__icon" src="/public/loudspeaker.svg" width="50"/>
+            </button>
+            <!-- <span>Click to hear the sound</span> -->
         </div>
         <Question :question="currentQuestion" :options-disabled="optionsDisabled" @option-selected="checkAnswer"/>
         <button
-         class="btn bg-primary-subtle" 
+         class="btn"
+         id="next__button" 
          @click="loadNextQuestion"
          :disabled="!optionsDisabled"
         >
@@ -101,5 +103,19 @@
 </template>
 
 <style scoped>
+.question {
+    margin-top: max(20vh, 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+#next__button {
+    background-color: greenyellow;
+}
+
+#sound__icon__button {
+    padding-right: 0.25rem;
+    border-radius: 1.75rem;
+}
 </style>

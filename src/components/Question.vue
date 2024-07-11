@@ -53,13 +53,21 @@
 
     .options {
         margin: 0 auto;
-        width: 60%;
+        width: 70%;
     }
 
     .option {
         margin: 0.75rem;
-
+        width: 100%;
         background-color: orange;
+    }
+
+    @media (min-width: 576px) {
+        .option {
+            width: 40%;
+            max-width: 70%;
+            padding: 0.75rem;
+        }
     }
 
     .selected {

@@ -17,9 +17,8 @@ onMounted(() => {
 <template>
     <div class="container d-flex flex-column justify-content-center align-items-center">
       <main>
-      <p>Animal Sounds</p>
-      <div v-if="!gameStarted" class="splash-screen">
-        
+        <div v-if="!gameStarted" class="splash-screen">
+        <p>Animal Sounds</p>
         <button class="btn lemon-green" @click="gameStarted = true">Start</button>
       </div>
       <div v-else>
@@ -33,6 +32,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
   .lemon-green {
     background-color: lawngreen;
     color: rgb(253, 250, 245);
