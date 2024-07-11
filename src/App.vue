@@ -15,21 +15,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
-    <p>Player ID: {{ userStore.userID }}</p>
-    <p>High score: {{ userStore.highScore }}</p>
-    <p>Number of times played: {{ userStore.timesPlayed }}</p>
-    <div v-if="!gameStarted" class="splash-screen">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+      <main>
       <p>Animal Sounds</p>
-      <button class="btn lemon-green" @click="gameStarted = true">Start</button>
-    </div>
-    <div v-else>
-      <QuizContainer
-       :questions="questionStore.questions" 
-       @generate-questions="questionStore.setQuestions"
-       />      
-    </div>
-  </main>
+      <div v-if="!gameStarted" class="splash-screen">
+        
+        <button class="btn lemon-green" @click="gameStarted = true">Start</button>
+      </div>
+      <div v-else>
+        <QuizContainer
+         :questions="questionStore.questions" 
+         @generate-questions="questionStore.setQuestions"
+         />      
+      </div>
+    </main>
+  </div>
 </template>
 
 <style scoped>

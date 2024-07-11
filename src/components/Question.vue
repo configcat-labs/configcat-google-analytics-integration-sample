@@ -32,23 +32,33 @@
 </script>
 
 <template>
-    <div>
-        <div class="options">
-            <button
-             v-for="(option, index) in question.options"
-             :id="`option${index + 1}`" 
-             class="btn option"
-             :class="{ correct__option: (optionsDisabled && option === question.answer && isAnswerHighlightEnabled) }"
-             :disabled="optionsDisabled"
-             @click="selectOption(option)">
-                {{option}}
-            </button>
+    <div class="container">
+        <div class="row">
+            <div class="options">
+                <button
+                 v-for="(option, index) in question.options"
+                 :id="`option${index + 1}`" 
+                 class="btn option"
+                 :class="{ correct__option: (optionsDisabled && option === question.answer && isAnswerHighlightEnabled) }"
+                 :disabled="optionsDisabled"
+                 @click="selectOption(option)">
+                    {{option}}
+                </button>
+            </div>
         </div>    
     </div>
 </template>
 
 <style scoped>
+
+    .options {
+        margin: 0 auto;
+        width: 60%;
+    }
+
     .option {
+        margin: 0.75rem;
+
         background-color: orange;
     }
 
