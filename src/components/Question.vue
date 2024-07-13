@@ -63,6 +63,10 @@
     }
 
     @media (min-width: 576px) {
+        .options {
+            padding-left: 10%;
+        }
+
         .option {
             width: 100px;
             padding: 0.75rem;

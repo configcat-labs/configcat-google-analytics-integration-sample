@@ -66,6 +66,9 @@
 
 <template>
     <div class="question">
+        <div class="question__details">
+            <p>Question {{ questionCounter + 1 }}/{{ questions.length }}  </p>
+        </div>
         <!-- Game over Modal -->
         <div class="modal fade" id="gameOverModal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -105,18 +108,31 @@
 
 <style scoped>
 .question {
-    margin-top: max(20vh, 4rem);
+    margin-top: max(5vh, 4rem);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.question__details {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
 #next__button {
+    margin-top: 1rem;
+    font-size: 1.25rem;
     background-color: greenyellow;
 }
 
 #sound__icon__button {
+    margin-bottom: 1rem;
     padding-right: 0.25rem;
     border-radius: 1.75rem;
+}
+
+#sound__icon__button:focus {
+    background-color: cyan;
+    transition: background-color 2s;
 }
 </style>
