@@ -16,7 +16,7 @@ Variant
 ## Build & Run
 
 ### Prerequisites
-- Node v20
+- Node v20+
 - A ConfigCat account
 - A Google Analytics account
 
@@ -39,10 +39,9 @@ npm run dev
 ## Learn more
 
 Useful links to technical resources.
-
-Example:
-- Next.js Documentation - learn about Next.js features and API.
-- Learn Next.js - an interactive Next.js tutorial.
+- [ConfigCat percentage targeting guide](https://support.google.com/analytics/answer/9212670)
+- [Creating Audiences in Google Analytics](https://support.google.com/analytics/answer/9267572)
+- [Google Analytics reports guide](https://support.google.com/analytics/answer/9212670)
 
 [**ConfigCat**](https://configcat.com) also supports many other frameworks and languages. Check out the full list of supported SDKs [here](https://configcat.com/docs/sdk-reference/overview/).
 
