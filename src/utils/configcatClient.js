@@ -3,7 +3,7 @@ import * as configcat from 'configcat-js';
 export function initializeClient() {
     const logger = configcat.createConsoleLogger(configcat.LogLevel.Info);
 
-    const configCatClient = configcat.getClient(import.meta.env.VITE_CONFIGCAT_SDK_KEY,
+    const configCatClient = configcat.getClient('YOUR-SDK-KEY',
         configcat.PollingMode.AutoPoll,
         {
             setupHooks: (hooks) => {
