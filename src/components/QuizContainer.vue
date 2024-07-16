@@ -38,8 +38,8 @@
     }
 
     function loadNextQuestion() {
-        questionCounter.value++;
-        if(questionCounter.value < props.questions.length) {
+        if(questionCounter.value + 1 < props.questions.length) {
+            questionCounter.value++;
             optionsDisabled.value = false;
             currentQuestion.value = props.questions[questionCounter.value];
         } else {
