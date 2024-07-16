@@ -23,7 +23,7 @@ Variant
 Follow these steps to run this project on your computer:
 1. Clone the repository:
    - Click the green "Code" button on the repository's page and copy the URL in the text field.
-   - Paste and run the following in your terminal: `git clone configcat-google-analytics-integration`.
+   - Paste and run the following in your terminal: `git clone https://github.com/configcat-labs/configcat-google-analytics-integration.git`.
 2. Install the dependencies:
    ```
    cd configcat-google-analytics-integration
