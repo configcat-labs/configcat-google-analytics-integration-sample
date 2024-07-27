@@ -1,31 +1,41 @@
 <script setup>
-    import { onBeforeMount } from 'vue';
-    import * as configcat from 'configcat-js'; 
-    import { initializeClient } from '@/utils/configcatClient'
+    import { inject, onBeforeMount, ref } from 'vue';
+    import { User } from 'configcat-vue'
     import { useUserStore } from '@/stores/user';
 
-    let configcatClient;
+    // Inject the ConfigCat client
+    const configCatClient = inject('configCatClient');
+
     let isAnswerHighlightEnabled;
 
     const props = defineProps({
         question: Object,
         optionsDisabled: Boolean
     })
+
     const emit = defineEmits(['optionSelected']);
 
     onBeforeMount(() => {
-        configcatClient = initializeClient();  
+        configCatClient.on('flagEvaluated', evaluationDetails => {
+            // send feature flag information to Google Analytics
+            const variant = "configcat-" + evaluationDetails.key + "-" + evaluationDetails.value;
+            gtag('event', 'experience_impression', {
+                'exp_variant_string': variant,
+                'variation_id': evaluationDetails.variationId
+            });
+        });
+
         setHighlightStatus();
-    })
+    });
 
     async function setHighlightStatus() {
-        isAnswerHighlightEnabled = await configcatClient.getValueAsync(
-            'highlight_answer',
+        // get the value of the Highlight answer feature flag
+        isAnswerHighlightEnabled = await configCatClient.getValueAsync('highlight_answer',
             false,
-            new configcat.User(useUserStore().userID)
+            new User(useUserStore().userID)
         );
     }
-    
+
     function selectOption(option) {
         emit('optionSelected', option);  
     }

@@ -10,7 +10,8 @@ const app = createApp(App)
 app.use(createPinia())
 
 app.use(ConfigCatPlugin, {
-    sdkKey: import.meta.env.VITE_CONFIGCAT_SDK_KEY,
+    // Don't forget to put in your actual SDK key below
+    sdkKey: "YOUR-SDK-KEY"
 });
 
 app.mount('#app')
