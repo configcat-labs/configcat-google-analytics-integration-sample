@@ -29,7 +29,7 @@ Follow these steps to run this project on your computer:
    cd configcat-google-analytics-integration
    npm install
    ```
-3. Enter your ConfigCat SDK key in `src/utils/configcatClient.js`.
+3. Enter your ConfigCat SDK key in `main.js`.
 4. Enter your Google Analytics Measurement ID in `index.html`.
 5. Run the project:
 ```
