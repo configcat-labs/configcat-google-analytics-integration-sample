@@ -1,10 +1,10 @@
 # Animal Sounds
 
-This sample app accompanies the article: **A/B Testing with ConfigCat and Google Analytics.**
+This sample app accompanies the article: **[A/B Testing with ConfigCat and Google Analytics](https://configcat.com/blog/2024/09/20/ab-testing-configcat-google-analytics/).**
 
 The app is a quiz where users listen to an animal sound and then choose the correct animal name from four options. The quiz app was built using Vue.js.
 
-We’re running an A/B test to see if highlighting the answer will encourage users to play more.
+We’re running an A/B test with [ConfigCat](https://configcat.com/) and Google Analytics to see if highlighting the answer will encourage users to play more.
 
 ![Selecting an option in the control variation of the quiz. The answer is not highlighted](https://github.com/user-attachments/assets/a4e8fcd1-1ca4-4ec4-9227-ea5aeb97e4e1)
 
